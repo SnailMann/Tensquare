@@ -20,6 +20,7 @@
         <module>../tensquare_common</module>
         <module>../tensquare_base</module>
         <module>../tensquare_recruit</module>
+        <module>../tensquare_qa</module>
     </modules>
 
     <properties>
