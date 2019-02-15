@@ -1,4 +1,4 @@
-package com.snailmann.tensquare.qa.pojo;
+package com.snailmann.tensquare.qa.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

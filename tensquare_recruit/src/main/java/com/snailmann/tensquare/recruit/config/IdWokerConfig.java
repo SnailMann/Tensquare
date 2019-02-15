@@ -1,4 +1,4 @@
-package com.snailmann.tensquare.base.config;
+package com.snailmann.tensquare.recruit.config;
 
 import com.snailmann.tensquare.common.util.IdWorker;
 import org.springframework.context.annotation.Bean;

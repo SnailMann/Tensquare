@@ -1,10 +1,10 @@
-## demo-tensquare
+## tensquare-recruit
 
-十次方项目的学习代码
+招聘模块微服务
 
+### 要完成的模块
 
-### 项目模块介绍
+- 热门企业列表
+- 推荐职位列表
+- 最新职位列表
 
-- tensquare_parent | 十次方项目的父工程
-- tensquare_common | 十次方项目的公共包
-- tensquare_base   | 标签基础项目

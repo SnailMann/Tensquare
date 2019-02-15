@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>tensquare_qa</artifactId>
 
     <parent>
         <artifactId>tensquare_parent</artifactId>
         <groupId>com.snailmann.tensquare</groupId>
         <version>1.0.0</version>
-        <relativePath>../tensquare_parent/pom.xml</relativePath>
     </parent>
+
+    <artifactId>tensquare_recruit</artifactId>
+    <version>1.0.0</version>
+    <name>tensquare_recruit</name>
+    <description>Demo project for Spring Boot</description>
+
 
     <dependencies>
         <!--springboot-->

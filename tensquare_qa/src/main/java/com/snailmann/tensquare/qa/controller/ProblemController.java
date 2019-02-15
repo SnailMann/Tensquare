@@ -1,7 +1,9 @@
 package com.snailmann.tensquare.qa.controller;
-import java.util.List;
 import java.util.Map;
 
+import com.snailmann.tensquare.common.entity.PageResult;
+import com.snailmann.tensquare.common.entity.Result;
+import com.snailmann.tensquare.common.entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,12 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.snailmann.tensquare.qa.pojo.Problem;
+import com.snailmann.tensquare.qa.entity.Problem;
 import com.snailmann.tensquare.qa.service.ProblemService;
 
-import entity.PageResult;
-import entity.Result;
-import entity.StatusCode;
 /**
  * 控制器层
  * @author Administrator
@@ -32,16 +31,16 @@ public class ProblemController {
 	
 	
 	/**
-	 * 查询全部数据
+	 * 查询全部数据 | 查询全部Problem
 	 * @return
 	 */
 	@RequestMapping(method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(true,StatusCode.OK,"查询成功",problemService.findAll());
+		return new Result(true, StatusCode.OK,"查询成功",problemService.findAll());
 	}
 	
 	/**
-	 * 根据ID查询
+	 * 根据ID查询 | 根据ID查询指定Problem
 	 * @param id ID
 	 * @return
 	 */
@@ -52,7 +51,7 @@ public class ProblemController {
 
 
 	/**
-	 * 分页+多条件查询
+	 * 分页+多条件查询 | 问题列表分页显示
 	 * @param searchMap 查询条件封装
 	 * @param page 页码
 	 * @param size 页大小
@@ -65,7 +64,7 @@ public class ProblemController {
 	}
 
 	/**
-     * 根据条件查询
+     * 根据条件查询 | 根据条件查询problem列表
      * @param searchMap
      * @return
      */
@@ -75,7 +74,7 @@ public class ProblemController {
     }
 	
 	/**
-	 * 增加
+	 * 增加 | 新增加一个Problem
 	 * @param problem
 	 */
 	@RequestMapping(method=RequestMethod.POST)
@@ -85,7 +84,7 @@ public class ProblemController {
 	}
 	
 	/**
-	 * 修改
+	 * 修改 | 修改一个Problem
 	 * @param problem
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
@@ -96,7 +95,7 @@ public class ProblemController {
 	}
 	
 	/**
-	 * 删除
+	 * 删除 | 删除一个Problem
 	 * @param id
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE)

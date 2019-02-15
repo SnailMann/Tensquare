@@ -1,14 +1,14 @@
-package com.snailmann.tensquare.qa;
+package com.snailmann.tensquare.recruit;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class QaApplication {
+public class RecruitApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(QaApplication.class, args);
+		SpringApplication.run(RecruitApplication.class, args);
 	}
 
-	
 }
+

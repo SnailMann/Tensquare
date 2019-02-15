@@ -10,7 +10,7 @@
         <artifactId>tensquare_parent</artifactId>
         <groupId>com.snailmann.tensquare</groupId>
         <version>1.0.0</version>
-        <relativePath>../tensquare_parent/pom.xml</relativePath>
     </parent>
+
 
 </project>

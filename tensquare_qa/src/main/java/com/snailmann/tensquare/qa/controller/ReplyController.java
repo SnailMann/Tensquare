@@ -1,7 +1,9 @@
 package com.snailmann.tensquare.qa.controller;
-import java.util.List;
 import java.util.Map;
 
+import com.snailmann.tensquare.common.entity.PageResult;
+import com.snailmann.tensquare.common.entity.Result;
+import com.snailmann.tensquare.common.entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.snailmann.tensquare.qa.pojo.Reply;
+import com.snailmann.tensquare.qa.entity.Reply;
 import com.snailmann.tensquare.qa.service.ReplyService;
 
-import entity.PageResult;
-import entity.Result;
-import entity.StatusCode;
+
 /**
  * 控制器层
  * @author Administrator
@@ -32,16 +32,16 @@ public class ReplyController {
 	
 	
 	/**
-	 * 查询全部数据
+	 * 查询全部数据 | 查询所有的回复列表
 	 * @return
 	 */
 	@RequestMapping(method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(true,StatusCode.OK,"查询成功",replyService.findAll());
+		return new Result(true, StatusCode.OK,"查询成功",replyService.findAll());
 	}
 	
 	/**
-	 * 根据ID查询
+	 * 根据ID查询 | 根据ID查询指定回复
 	 * @param id ID
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class ReplyController {
 
 
 	/**
-	 * 分页+多条件查询
+	 * 分页+多条件查询 | 根据条件查询分页的回复列表
 	 * @param searchMap 查询条件封装
 	 * @param page 页码
 	 * @param size 页大小
@@ -65,7 +65,7 @@ public class ReplyController {
 	}
 
 	/**
-     * 根据条件查询
+     * 根据条件查询 | 根据条件查询回复列表
      * @param searchMap
      * @return
      */

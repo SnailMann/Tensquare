@@ -1,28 +1,24 @@
 package com.snailmann.tensquare.recruit.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.persistence.criteria.Selection;
 
+import com.snailmann.tensquare.common.util.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import util.IdWorker;
 
 import com.snailmann.tensquare.recruit.dao.RecruitDao;
-import com.snailmann.tensquare.recruit.pojo.Recruit;
+import com.snailmann.tensquare.recruit.entity.Recruit;
 
 /**
  * 服务层
@@ -38,6 +34,26 @@ public class RecruitService {
 	
 	@Autowired
 	private IdWorker idWorker;
+
+
+    /**
+     * 推荐职位 | 前六个最热门的职位信息
+     * 0: 关闭 1：开启 2：推荐（热门）
+     * @return
+     */
+	public List<Recruit> recommend(){
+	    return recruitDao.findTop6ByStateOrderByCreatetimeDesc("2");
+    }
+
+    /**
+     * 查询最新的前6个职位信息
+     * @return
+     */
+    public List<Recruit> newList(){
+        //state not equals 0
+	    return recruitDao.findTop6ByStateNotOrderByCreatetimeDesc("0");
+    }
+
 
 	/**
 	 * 查询全部列表

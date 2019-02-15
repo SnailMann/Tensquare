@@ -1,7 +1,6 @@
 package com.snailmann.tensquare.qa.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +11,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
 
+import com.snailmann.tensquare.common.util.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,10 +19,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import util.IdWorker;
+
 
 import com.snailmann.tensquare.qa.dao.ProblemDao;
-import com.snailmann.tensquare.qa.pojo.Problem;
+import com.snailmann.tensquare.qa.entity.Problem;
 
 /**
  * 服务层
