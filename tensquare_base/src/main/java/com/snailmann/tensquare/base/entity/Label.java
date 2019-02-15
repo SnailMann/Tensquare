@@ -41,5 +41,12 @@ public class Label implements Serializable {
 
 
 
+    public final static String ID = "id";
+    public final static String LABEL_NAME = "labelname";
+    public final static String STATE = "state";
+    public final static String COUNT = "count";
+    public final static String FANS = "fans";
+    public final static String RECOMMEND = "recommend";
+
 
 }
