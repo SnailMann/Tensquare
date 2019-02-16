@@ -9,6 +9,8 @@
 - tensquare_common | 十次方项目的公共包
 - tensquare_base   | 标签基础微服务 | 9001
 - tensquare_recruit| 招聘模块微服务 | 9002
+- tensquare_qa | 问答模块微服务 | 9003
+- tensquare_aritcle | 文章模块微服务 | 9004
 
 
 ### 学习内容
