@@ -17,6 +17,7 @@
 
 - Docker的使用
 - Spring Data JPA的使用
+- Spring Cache的使用
 - Redis的使用
 - MongoDB的使用
 - Elasticsearch搜索引擎的使用

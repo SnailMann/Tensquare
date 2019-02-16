@@ -1,4 +1,4 @@
-package com.snailmann.tensquare.article.controller;
+package com.snailmann.tensquare.gathering.exception.handler;
 
 import com.snailmann.tensquare.common.entity.Result;
 import com.snailmann.tensquare.common.entity.StatusCode;
