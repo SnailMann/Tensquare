@@ -98,6 +98,15 @@ public class SpitService {
         spit.setComment(0);
         //状态
         spit.setState("1");
+        //如果当前添加的吐槽，有父节点，那么父节点的吐槽回复数要 + 1
+        if (spit.getParentid() != null && !"".equals(spit.getParentid())){
+            //update({_id: xxx} , {comment: NumberInt(1)})  | query就是前一个参数，update就是后一个参数
+            Query query = new Query();
+            query.addCriteria(Criteria.where("_id").is(spit.getParentid()));
+            Update update = new Update();
+            update.inc("comment",1);
+            mongoTemplate.updateFirst(query,update,"spit");
+        }
         spitDao.save(spit);
     }
 
