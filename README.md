@@ -7,10 +7,12 @@
 
 - tensquare_parent | 十次方项目的父工程
 - tensquare_common | 十次方项目的公共包
-- tensquare_base   | 标签基础微服务 | 9001
-- tensquare_recruit| 招聘模块微服务 | 9002
-- tensquare_qa | 问答模块微服务 | 9003
-- tensquare_aritcle | 文章模块微服务 | 9004
+- tensquare_base   | 标签基础微服务 | 9001 | Mysql
+- tensquare_recruit| 招聘模块微服务 | 9002 | Mysql
+- tensquare_qa | 问答模块微服务 | 9003 | Mysql
+- tensquare_aritcle | 文章模块微服务 | 9004 | Mysql,Redis
+- tensquare_gathering | 活动模块微服务 | 9005 | Mysql,Redis
+- tensquare_spit | 吐槽模块微服务 | 9006 | MongoDB | Redis
 
 
 ### 学习内容
@@ -23,3 +25,4 @@
 - Elasticsearch搜索引擎的使用
 - Logstash的使用
 - RabbitMQ的使用
+- Jwt的使用 | 无状态登录
