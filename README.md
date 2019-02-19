@@ -15,6 +15,7 @@
 | tensquare_aritcle | 文章模块微服务 | 9004 | Mysql,Redis
 | tensquare_gathering | 活动模块微服务 | 9005 | Mysql,Redis
 | tensquare_spit | 吐槽模块微服务 | 9006 | MongoDB, Redis
+| tensquare_search | 文章模块微服务 | 9007 | ElasticSearch
 
 
 ### 学习内容
