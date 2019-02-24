@@ -7,7 +7,7 @@ spring:
   # Mysql
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.31.130:3306/tensquare_article?&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.31.128:3306/tensquare_article?&characterEncoding=utf8&useSSL=false
     username: root
     password: root
   # JPA
@@ -16,5 +16,5 @@ spring:
     database: mysql
   # Redis
   redis:
-    host: 192.168.31.130
+    host: 192.168.31.128
     port: 6379
