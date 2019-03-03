@@ -25,6 +25,7 @@
         <module>../tensquare_gathering</module>
         <module>../tensquare_spit</module>
         <module>../tensquare_search</module>
+        <module>../tensquare_user</module>
     </modules>
 
     <properties>
