@@ -1,0 +1,16 @@
+server:
+  port: 9009
+
+spring:
+  application:
+    name: tensquare-sms
+  redis:
+    host: 192.168.31.128
+    port: 6379
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 192.168.31.128
+    port: 5672
+
+

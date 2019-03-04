@@ -2,7 +2,7 @@ package com.snailmann.tensquare.user.service;
 
 import com.snailmann.tensquare.common.util.IdWorker;
 import com.snailmann.tensquare.user.dao.AdminDao;
-import com.snailmann.tensquare.user.pojo.Admin;
+import com.snailmann.tensquare.user.entity.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

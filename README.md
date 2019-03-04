@@ -17,6 +17,7 @@
 | tensquare_spit | 吐槽模块微服务 | 9006 | MongoDB, Redis
 | tensquare_search | 文章模块微服务 | 9007 | ElasticSearch,(Logstash,Mysql)
 | tensquare_user| 用户模块微服务| 9008 | Mysql,Redis,RabbitMQ
+| tensquare_sms| 消息模块微服务| 9008 | RabbitMQ
 
 
 ### 学习内容

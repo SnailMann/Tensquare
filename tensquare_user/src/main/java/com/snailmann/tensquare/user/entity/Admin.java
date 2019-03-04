@@ -1,4 +1,4 @@
-package com.snailmann.tensquare.user.pojo;
+package com.snailmann.tensquare.user.entity;
 
 import lombok.Data;
 

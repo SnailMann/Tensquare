@@ -3,7 +3,7 @@ package com.snailmann.tensquare.user.controller;
 import com.snailmann.tensquare.common.entity.PageResult;
 import com.snailmann.tensquare.common.entity.Result;
 import com.snailmann.tensquare.common.entity.StatusCode;
-import com.snailmann.tensquare.user.pojo.Admin;
+import com.snailmann.tensquare.user.entity.Admin;
 import com.snailmann.tensquare.user.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
