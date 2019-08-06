@@ -59,3 +59,58 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 - 对同样的密码进行加密，最终的结果是不同的，因为salt也是随机的
 
 #### JWT权限认证
+
+- 采用JJWT开源库进行JWT的签发和认证,引入Maven库
+
+```xml
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.0</version>
+</dependency>
+```
+
+- 实用JJWT签发生成一个JWT字符串
+```java
+/**
+ * 简单实用JJWT工具，签发JWT字符串
+ * output : 
+ * eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2NjYiLCJzdWIiOiJTbmFpbE1hbm4iLCJpYXQiOjE1NjUxMDE3NDl9.pHpqToaxie9mtJM775AaL5j_p_mKoIC9XtY4NJ59_bg
+ * {"type":"jwt","alg":"HS256"}.{"jti":"666","sub":"SnailMann","iat":1565101749}.xxxxxxxx...
+ */
+public class CreateJwt {
+
+    public static void main(String[] args) {
+        JwtBuilder jwtBuilder = Jwts.builder()
+                .setId("666") //jti : JWT ID
+                .setHeaderParam("type","jwt") // 头部参数，自定义
+                .setSubject("SnailMann") // sub : 用户名
+                .setIssuedAt(new Date()) // jat: 签发时间
+                .signWith(SignatureAlgorithm.HS256,"tensquare");
+        System.out.println(jwtBuilder.compact());
+
+    }
+}
+```
+
+- 对JWT Token进行解析验证
+```java
+
+/**
+* JWT Token解析
+*/
+public class ParseJwt {
+
+    public static void main(String[] args) {
+        Claims claims = Jwts.parser( )
+                .setSigningKey("tensquare") // 服务端设置盐, 下面是JWT完整字符串
+                .parseClaimsJws("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2NjYiLCJzdWIiOiJTbmFpbE1hbm4iLCJpYXQiOjE1NjUxMDIzMjh9.FBuviL-iEarBboNWTD6lg_XwMhDq5Q5-CQX8pBDw9OE")
+                .getBody(); //获得Body
+        System.out.println(claims);
+        System.out.println("用户ID/JWT ID: " + claims.getId());
+        System.out.println("用户名: " + claims.getSubject());
+        System.out.println("登录时间/签发时间: " +claims.getIssuedAt());
+
+    }
+}
+```

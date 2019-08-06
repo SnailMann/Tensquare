@@ -3,6 +3,9 @@ package com.snailmann.tensquare.user.service;
 import com.snailmann.tensquare.common.util.IdWorker;
 import com.snailmann.tensquare.user.dao.UserDao;
 import com.snailmann.tensquare.user.entity.User;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -223,4 +226,6 @@ public class UserService {
 
         return null;
     }
+
+
 }
