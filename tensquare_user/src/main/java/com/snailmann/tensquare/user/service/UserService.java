@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -38,6 +39,9 @@ public class UserService {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     public void sendSms(String mobile) {
@@ -104,11 +108,17 @@ public class UserService {
     }
 
     /**
-     * 增加
+     * 增加一个用户
      *
      * @param user
      */
     public void add(User user) {
+
+        //密码BCrypt加密
+        String password = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(password);
+
+        //初始化其他用户数据
         user.setId(idWorker.nextId() + "");
         user.setFollowcount(0);//初始化关注数
         user.setFanscount(0);//初始化粉丝数
@@ -116,6 +126,8 @@ public class UserService {
         user.setRegdate(new Date()); //注册时间
         user.setUpdatedate(new Date());//信息更新时间
         user.setLastdate(new Date());//最后登录时间
+
+
         userDao.save(user);
     }
 
@@ -191,4 +203,24 @@ public class UserService {
     }
 
 
+    /**
+     * 普通用户登录判断
+     * 通过用户手机号来判断
+     *
+     * @param mobile
+     * @param password
+     * @return
+     */
+    public User login(String mobile, String password) {
+        User userdb = userDao.findByMobile(mobile);
+
+        //如果数据存在该用户数据，且与数据库密文匹配成功，那么就登录成功
+        if (userdb != null){
+            if (bCryptPasswordEncoder.matches(password,userdb.getPassword())){
+                return userdb;
+            }
+        }
+
+        return null;
+    }
 }

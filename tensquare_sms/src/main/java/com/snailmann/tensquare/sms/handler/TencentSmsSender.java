@@ -27,6 +27,7 @@ public class TencentSmsSender {
             SmsSingleSenderResult result = ssender.sendWithParam("86", mobiles[0],
                     parameterConfig.templateId, params, parameterConfig.smsSign, "", "");
             System.out.println(result);
+
         } catch (HTTPException | JSONException | IOException e) {
             // HTTP响应码错误，json解析错误，网络IO错误
             e.printStackTrace();

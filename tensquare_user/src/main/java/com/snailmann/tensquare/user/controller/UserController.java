@@ -28,7 +28,15 @@ public class UserController {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public Result login(@RequestBody User user){
+        user = userService.login(user.getMobile(),user.getPassword());
+        if (user == null){
+            return new Result(false,StatusCode.LOGIN_ERROR,"登录失败");
+        }
 
+        return new Result(true,StatusCode.OK,"登录成功");
+    }
     /**
      * 注册用户
      * 只需要传重要的信息，比如用户名，密码，手机号，其他都可以不填
