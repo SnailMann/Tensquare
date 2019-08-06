@@ -15,6 +15,4 @@
 ### 腾讯云/阿里云短信
 
 - 不管你使用的是哪家的发短信，其实都非常的简单
-
-
-[腾讯云]https://github.com/qcloudsms/qcloudsms_java
+- [腾讯云 Java SDK](https://github.com/qcloudsms/qcloudsms_java)

@@ -23,8 +23,11 @@ public class SmsListener {
         try {
             System.out.println("手机号:" + map.get("mobile"));
             System.out.println("验证码:" + map.get("checkcode"));
+            System.out.println("过期时间:" + map.get("ttl"));
             //腾讯云模板：您好，您的验证码是：{1} 请谨慎保管！有效期是{2}分钟
-            tencentSmsSender.sender(new String[]{map.get("mobile")}, new String[]{map.get("checkcode"), "1"});
+            Integer ttl = Integer.valueOf(map.getOrDefault("ttl", "60"));
+            int minute = ttl / 60;
+            tencentSmsSender.sender(new String[]{map.get("mobile")}, new String[]{map.get("checkcode"), String.valueOf(minute)});
         } catch (Exception e) {
             log.error("消费失败", e);
         }

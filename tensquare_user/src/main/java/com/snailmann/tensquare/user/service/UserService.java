@@ -44,11 +44,13 @@ public class UserService {
         //生成6位随机数作为短信验证码
         String checkcode = RandomStringUtils.randomNumeric(6);
         //向缓存中放一份,1分钟后过期
-        redisTemplate.opsForValue().set("checkcode_" + mobile, checkcode, 60, TimeUnit.SECONDS);
+        int ttl = 60;
+        redisTemplate.opsForValue().set("checkcode_" + mobile, checkcode, ttl, TimeUnit.SECONDS);
         //给用户发一份，rabbitmq发送
         Map<String, String> map = new HashMap<>();
         map.put("mobile", mobile);
         map.put("checkcode", checkcode);
+        map.put("ttl", ttl + "");
         rabbitTemplate.convertAndSend("sms", map);
 
         //在控制台输出一份(为了测试)

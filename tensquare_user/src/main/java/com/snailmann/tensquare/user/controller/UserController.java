@@ -31,6 +31,7 @@ public class UserController {
 
     /**
      * 注册用户
+     * 只需要传重要的信息，比如用户名，密码，手机号，其他都可以不填
      *
      * @param code
      * @param user

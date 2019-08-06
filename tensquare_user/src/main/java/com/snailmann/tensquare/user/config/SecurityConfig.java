@@ -1,28 +1,29 @@
-## tensquare-user
+package com.snailmann.tensquare.user.config;
 
-用户模块微服务
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-### 注意
-
-- 关于消息中间件的队列需要人为在MQ后台创建
-- 仅仅使用Spring Security的BCrypt加密功能，对密码进行加密，认证鉴权方面，我们使用JWT去实现
-
-### 要做的事情
-
-- 用户分普通用户和管理员用户
-- 用户可以被关注
-- 使用短信来接收验证码
-- 用户注册
-
-### 技术实现
-
-#### Spring Security
-
-- 因为只使用Security进行加密，所以我们需要覆盖默认拦截配置，开放所有路径，不拦截，关闭csrf拦截
-```java
+/**
+ * Security 配置类
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    /**
+     * 用于对密码进行BCrypt算法加密
+     *
+     * @return
+     */
+    @Bean
+    BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -41,21 +42,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable();
     }
 }
-```
-
-- 对密码进行BCrypt算法加密
-```java
-    /**
-     * 用于对密码进行BCrypt算法加密
-     *
-     * @return
-     */
-    @Bean
-    BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    
-```
-- 对同样的密码进行加密，最终的结果是不同的，因为salt也是随机的
-
-#### JWT权限认证

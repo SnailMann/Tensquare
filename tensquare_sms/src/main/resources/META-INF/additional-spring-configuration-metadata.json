@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "tencent.sms.appid",
+      "type": "java.lang.Integer",
+      "description": "Description for tencent.sms.appid."
+    },
+    {
+      "name": "tencent.sms.templateid",
+      "type": "java.lang.Integer",
+      "description": "Description for tencent.sms.templateid."
+    },
+    {
+      "name": "tencent.sms.smssign",
+      "type": "java.lang.String",
+      "description": "Description for tencent.sms.smssign."
+    },
+    {
+      "name": "tencent.sms.appkey",
+      "type": "java.lang.String",
+      "description": "Description for tencent.sms.appkey."
+    }
+  ]
+}

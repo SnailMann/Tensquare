@@ -13,4 +13,12 @@ spring:
     host: 192.168.31.128
     port: 5672
 
+# https://cloud.tencent.com/document/product/382/13613
+tencent:
+  sms:
+    appid: 1400
+    appkey: d687e14
+    templateid: 286
+    smssign: 腾讯云
+
 

@@ -10,5 +10,5 @@ import com.snailmann.tensquare.user.entity.Admin;
  *
  */
 public interface AdminDao extends JpaRepository<Admin,String>,JpaSpecificationExecutor<Admin>{
-	
+	Admin findByLoginname(String loginname);
 }
