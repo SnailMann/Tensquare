@@ -56,7 +56,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
 ```
-- 对同样的密码进行加密，最终的结果是不同的，因为salt也是随机的
+对同样的密码进行加密，最终的结果是不同的，因为salt也是随机的
+
+- 对密码进行加密
+```java
+String password = bCryptPasswordEncoder.encode(user.getPassword());
+```
+- 密码原文和密文的匹配
+```java
+if (bCryptPasswordEncoder.matches(password,userdb.getPassword())){
+    return userdb;
+}
+```
+
 
 #### JWT权限认证
 
