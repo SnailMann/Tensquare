@@ -5,12 +5,22 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>tensquare_common</artifactId>
+    <packaging>jar</packaging>
 
     <parent>
         <artifactId>tensquare_parent</artifactId>
         <groupId>com.snailmann.tensquare</groupId>
         <version>1.0.0</version>
     </parent>
+
+    <dependencies>
+        <!--jjwt-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
