@@ -17,6 +17,11 @@ spring:
     host: 192.168.31.128
     port: 5672
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 jwt:
   config:
     key: tensquare

@@ -137,7 +137,7 @@ public class UserController {
     }
 
     /**
-     * 增加
+     * 增加一个用户
      *
      * @param user
      */
@@ -166,25 +166,10 @@ public class UserController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable String id) {
-        String header = request.getHeader("Authorization");
-        if (StringUtils.isBlank(header)) {
-            return new Result(false, StatusCode.ACCESS_ERROR, "权限不足");
+        String token = (String) request.getAttribute("claims_admin");
+        if (StringUtils.isBlank(token)) {
+            return new Result(false, StatusCode.OK, "权限不足");
         }
-        if (!header.startsWith("Bearer ")) {
-            return new Result(false, StatusCode.ACCESS_ERROR, "权限不足");
-        }
-        String realToken = header.substring(7);
-        try {
-            Claims claims = jwtUtil.parseJWT(realToken);
-            String roles = (String) claims.get("roles");
-            if (!"admin".equals(roles)) {
-                throw new RuntimeException("权限不足");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new Result(false, StatusCode.ACCESS_ERROR, "权限不足");
-        }
-
         userService.deleteById(id);
         return new Result(true, StatusCode.OK, "删除成功");
     }
