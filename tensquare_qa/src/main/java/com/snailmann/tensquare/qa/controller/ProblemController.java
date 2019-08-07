@@ -5,12 +5,15 @@ import java.util.Map;
 import com.snailmann.tensquare.common.entity.PageResult;
 import com.snailmann.tensquare.common.entity.Result;
 import com.snailmann.tensquare.common.entity.StatusCode;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import com.snailmann.tensquare.qa.entity.Problem;
 import com.snailmann.tensquare.qa.service.ProblemService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 控制器层
@@ -25,8 +28,13 @@ public class ProblemController {
     @Autowired
     private ProblemService problemService;
 
+    @Autowired
+    private HttpServletRequest request;
+
+
     /**
      * 查询某个标签的最新回答列表
+     *
      * @param labelId
      * @param page
      * @param size
@@ -35,11 +43,12 @@ public class ProblemController {
     @GetMapping("/newlist/{labelId}/{page}/{size}")
     public Result newList(@PathVariable String labelId, @PathVariable int page, @PathVariable int size) {
         Page<Problem> pageData = problemService.newList(labelId, page, size);
-        return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(pageData.getTotalElements(),pageData.getContent()));
+        return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(pageData.getTotalElements(), pageData.getContent()));
     }
 
     /**
      * 查询某个标签的热门回答列表
+     *
      * @param labelId
      * @param page
      * @param size
@@ -47,12 +56,13 @@ public class ProblemController {
      */
     @GetMapping("/hotlist/{labelId}/{page}/{size}")
     public Result hotList(@PathVariable String labelId, @PathVariable int page, @PathVariable int size) {
-        Page<Problem> pageData = problemService.hotList(labelId,page,size);
-        return new Result(true, StatusCode.OK, "查询成功",  new PageResult<>(pageData.getTotalElements(),pageData.getContent()));
+        Page<Problem> pageData = problemService.hotList(labelId, page, size);
+        return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(pageData.getTotalElements(), pageData.getContent()));
     }
 
     /**
      * 查询某个标签的等待回答列表
+     *
      * @param labelId
      * @param page
      * @param size
@@ -60,8 +70,8 @@ public class ProblemController {
      */
     @GetMapping("/waitlist/{labelId}/{page}/{size}")
     public Result waitList(@PathVariable String labelId, @PathVariable int page, @PathVariable int size) {
-        Page<Problem> pageData = problemService.waitList(labelId,page,size);
-        return new Result(true, StatusCode.OK, "查询成功",  new PageResult<>(pageData.getTotalElements(),pageData.getContent()));
+        Page<Problem> pageData = problemService.waitList(labelId, page, size);
+        return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(pageData.getTotalElements(), pageData.getContent()));
     }
 
     /**
@@ -118,6 +128,10 @@ public class ProblemController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public Result add(@RequestBody Problem problem) {
+        String token = (String) request.getAttribute("claims_user");
+        if (StringUtils.isBlank(token)) {
+            return new Result(false, StatusCode.ACCESS_ERROR, "权限不足");
+        }
         problemService.add(problem);
         return new Result(true, StatusCode.OK, "增加成功");
     }

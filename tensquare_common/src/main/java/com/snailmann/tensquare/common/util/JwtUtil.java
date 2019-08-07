@@ -54,6 +54,7 @@ public class JwtUtil {
                 .setSubject(subject)
                 .setIssuedAt(now)
                 .signWith(SignatureAlgorithm.HS256, key).claim("roles", roles);
+        //ttl有值才设置过期时间，无值就不设置过期时间
         if (ttl > 0) {
             builder.setExpiration(new Date(nowMillis + ttl));
         }

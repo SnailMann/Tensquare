@@ -14,6 +14,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -44,9 +45,13 @@ public class UserController {
         if (user == null) {
             return new Result(false, StatusCode.LOGIN_ERROR, "登录失败");
         }
+        //登录成功，生成Token
+        String token = jwtUtil.createJWT(user.getId(), user.getMobile(), "user");
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("token", token);
+        resultMap.put("role", "user");
 
-
-        return new Result(true, StatusCode.OK, "登录成功");
+        return new Result(true, StatusCode.OK, "登录成功", resultMap);
     }
 
     /**
