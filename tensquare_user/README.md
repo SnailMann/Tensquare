@@ -14,6 +14,8 @@
 - 使用短信来接收验证码
 - 用户注册
 
+
+
 ### 技术实现
 
 #### Spring Security
@@ -126,3 +128,19 @@ public class ParseJwt {
     }
 }
 ```
+
+
+### 功能实现
+
+#### 用户登录，成功返回Jwt
+
+- 用户登录成功后，可以通过response的body返回，也可以通过header返回
+- 前端获取token, 存储到local store中
+
+#### 用户登录后执行需鉴权的请求
+
+- 前端从local store取出token, 跟随请求发送，一般通过requset 的header去携带token
+- 我们这里前后端的约定是，前端请求微服务需要添加头信息Authorization,内容为Bearer+空格+token
+- 后端接收到请求后，从request中取出token, 对token进行验证
+
+ 

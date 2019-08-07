@@ -3,13 +3,17 @@ package com.snailmann.tensquare.user.controller;
 import com.snailmann.tensquare.common.entity.PageResult;
 import com.snailmann.tensquare.common.entity.Result;
 import com.snailmann.tensquare.common.entity.StatusCode;
+import com.snailmann.tensquare.common.util.JwtUtil;
 import com.snailmann.tensquare.user.entity.User;
 import com.snailmann.tensquare.user.service.UserService;
+import io.jsonwebtoken.Claims;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -28,15 +32,23 @@ public class UserController {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public Result login(@RequestBody User user){
-        user = userService.login(user.getMobile(),user.getPassword());
-        if (user == null){
-            return new Result(false,StatusCode.LOGIN_ERROR,"登录失败");
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    JwtUtil jwtUtil;
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Result login(@RequestBody User user) {
+        user = userService.login(user.getMobile(), user.getPassword());
+        if (user == null) {
+            return new Result(false, StatusCode.LOGIN_ERROR, "登录失败");
         }
 
-        return new Result(true,StatusCode.OK,"登录成功");
+
+        return new Result(true, StatusCode.OK, "登录成功");
     }
+
     /**
      * 注册用户
      * 只需要传重要的信息，比如用户名，密码，手机号，其他都可以不填
@@ -154,6 +166,25 @@ public class UserController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable String id) {
+        String header = request.getHeader("Authorization");
+        if (StringUtils.isBlank(header)) {
+            return new Result(false, StatusCode.ACCESS_ERROR, "权限不足");
+        }
+        if (!header.startsWith("Bearer ")) {
+            return new Result(false, StatusCode.ACCESS_ERROR, "权限不足");
+        }
+        String realToken = header.substring(7);
+        try {
+            Claims claims = jwtUtil.parseJWT(realToken);
+            String roles = (String) claims.get("roles");
+            if (!"admin".equals(roles)) {
+                throw new RuntimeException("权限不足");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, StatusCode.ACCESS_ERROR, "权限不足");
+        }
+
         userService.deleteById(id);
         return new Result(true, StatusCode.OK, "删除成功");
     }

@@ -16,3 +16,8 @@ spring:
     password: guest
     host: 192.168.31.128
     port: 5672
+
+jwt:
+  config:
+    key: tensquare
+    ttl: 3600000 # 默认token一小时才过期

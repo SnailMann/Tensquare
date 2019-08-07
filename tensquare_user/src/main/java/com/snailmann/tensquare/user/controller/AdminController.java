@@ -3,6 +3,7 @@ package com.snailmann.tensquare.user.controller;
 import com.snailmann.tensquare.common.entity.PageResult;
 import com.snailmann.tensquare.common.entity.Result;
 import com.snailmann.tensquare.common.entity.StatusCode;
+import com.snailmann.tensquare.common.util.JwtUtil;
 import com.snailmann.tensquare.user.entity.Admin;
 import com.snailmann.tensquare.user.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -24,16 +26,31 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    JwtUtil jwtUtil;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public Result login(@RequestBody Admin admin){
+    /**
+     * 管理员用户登录
+     * <p>
+     * token信息可以通过header传递，也可以直接返回
+     *
+     * @param admin
+     * @return
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Result login(@RequestBody Admin admin) {
         admin = adminService.login(admin);
-        if (admin == null){
-            return new Result(false,StatusCode.LOGIN_ERROR,"登录失败");
+        if (admin == null) {
+            return new Result(false, StatusCode.LOGIN_ERROR, "登录失败");
         }
-        //TODO 使得前后端可以通话的操作，采用JWT实现
-        return new Result(true,StatusCode.OK,"登录成功");
+        // 登录成功，返回JWT Token
+        String token = jwtUtil.createJWT(admin.getId(), admin.getLoginname(), "admin");
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("token", token);
+        resultMap.put("role", "admin");
+        return new Result(true, StatusCode.OK, "登录成功", resultMap);
     }
+
     /**
      * 查询全部数据
      *
@@ -105,7 +122,8 @@ public class AdminController {
     }
 
     /**
-     * 删除
+     * 删除一个用户 | 只有Admin用户才能删除普通用户
+     * 所以需要鉴权通过，才能调用该请求
      *
      * @param id
      */
