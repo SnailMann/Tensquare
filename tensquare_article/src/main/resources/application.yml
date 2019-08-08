@@ -6,7 +6,7 @@ spring:
     name: tensquare-article
   # Mysql
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.31.128:3306/tensquare_article?&characterEncoding=utf8&useSSL=false
     username: root
     password: root
@@ -18,3 +18,19 @@ spring:
   redis:
     host: 192.168.31.128
     port: 6379
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 10
+    serviceUrl:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    ip-address: ${spring.cloud.client.ip-address}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    metadata-map:
+      version: ${info.version}

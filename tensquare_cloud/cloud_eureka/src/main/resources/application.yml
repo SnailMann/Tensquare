@@ -1,8 +1,28 @@
+#eureka:
+#  client:
+#    register-with-eureka: false # 不将自己注册到Eureka上
+#    fetchRegistry: false # 不在Eureka显示自己的信息
+#    service-url: # Eureka客户端与服务端进行交互的地址
+#      defaultZone: http://127.0.0.1:${server.port}/eureka/
+
 eureka:
   client:
-    register-with-eureka: false # 不将自己注册到Eureka上
-    fetchRegistry: false # 不在Eureka显示自己的信息
-    serviceUrl: # Eureka客户端与服务端进行交互的地址
-      defaultZone: http://127.0.0.1:${server.port}/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 10
+    serviceUrl:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    ip-address: ${spring.cloud.client.ip-address}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    metadata-map:
+      version: ${info.version}
+
 server:
   port: 6868
+spring:
+  application:
+    name: cloud-eureka
