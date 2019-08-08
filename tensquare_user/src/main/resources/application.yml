@@ -26,3 +26,20 @@ jwt:
   config:
     key: tensquare
     ttl: 3600000 # 默认token一小时才过期
+
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 10
+    serviceUrl:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    ip-address: ${spring.cloud.client.ip-address}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    metadata-map:
+      version: ${info.version}

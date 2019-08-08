@@ -15,6 +15,11 @@
 
 
     <dependencies>
+        <!--springcloud-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
         <!--springboot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

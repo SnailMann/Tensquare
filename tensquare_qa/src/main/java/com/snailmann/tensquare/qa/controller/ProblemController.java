@@ -3,6 +3,7 @@ package com.snailmann.tensquare.qa.controller;
 import com.snailmann.tensquare.common.entity.PageResult;
 import com.snailmann.tensquare.common.entity.Result;
 import com.snailmann.tensquare.common.entity.StatusCode;
+import com.snailmann.tensquare.qa.client.BaseClient;
 import com.snailmann.tensquare.qa.entity.Problem;
 import com.snailmann.tensquare.qa.service.ProblemService;
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,13 @@ public class ProblemController {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private BaseClient baseClient;
+
+    @RequestMapping(value = "/label/{labelId}", method = RequestMethod.GET)
+    public Result findByLabelId(@PathVariable String labelId) {
+        return baseClient.findById(labelId);
+    }
 
     /**
      * 查询某个标签的最新回答列表
