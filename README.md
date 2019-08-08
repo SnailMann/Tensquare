@@ -5,6 +5,8 @@
 
 ### 项目模块介绍
 
+- Tensquare子项目
+
 |项目名称|描述|端口号|数据库|备注|
 | --- | --- | --- | --- | ---| 
 | tensquare_parent | 十次方项目的父工程
@@ -18,6 +20,14 @@
 | tensquare_search | 文章模块微服务 | 9007 | ElasticSearch,(Logstash,Mysql)
 | tensquare_user| 用户模块微服务| 9008 | Mysql,Redis,RabbitMQ
 | tensquare_sms| 消息模块微服务| 9008 | RabbitMQ
+
+
+- Cloud子项目
+
+|项目名称|描述|端口号|数据库|备注|
+| --- | --- | --- | --- | ---| 
+| cloud_eureka | 注册中心 | 6868
+
 
 
 ### 学习内容

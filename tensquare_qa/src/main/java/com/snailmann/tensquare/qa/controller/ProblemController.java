@@ -1,19 +1,17 @@
 package com.snailmann.tensquare.qa.controller;
 
-import java.util.Map;
-
 import com.snailmann.tensquare.common.entity.PageResult;
 import com.snailmann.tensquare.common.entity.Result;
 import com.snailmann.tensquare.common.entity.StatusCode;
+import com.snailmann.tensquare.qa.entity.Problem;
+import com.snailmann.tensquare.qa.service.ProblemService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import com.snailmann.tensquare.qa.entity.Problem;
-import com.snailmann.tensquare.qa.service.ProblemService;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 控制器层
