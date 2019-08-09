@@ -11,15 +11,16 @@
 | --- | --- | --- | --- | ---| 
 | tensquare_parent | 十次方项目的父工程
 | tensquare_common | 十次方项目的公共包
-| tensquare_base   | 标签基础微服务 | 9001 | Mysql
-| tensquare_recruit| 招聘模块微服务 | 9002 | Mysql
-| tensquare_qa | 问答模块微服务 | 9003 | Mysql
-| tensquare_aritcle | 文章模块微服务 | 9004 | Mysql,Redis
-| tensquare_gathering | 活动模块微服务 | 9005 | Mysql,Redis
+| tensquare_base   | 标签基础微服务 | 9001 | MySQL
+| tensquare_recruit| 招聘模块微服务 | 9002 | MySQL
+| tensquare_qa | 问答模块微服务 | 9003 | MySQL
+| tensquare_aritcle | 文章模块微服务 | 9004 | MySQL,Redis
+| tensquare_gathering | 活动模块微服务 | 9005 | MySQL,Redis
 | tensquare_spit | 吐槽模块微服务 | 9006 | MongoDB, Redis
-| tensquare_search | 文章模块微服务 | 9007 | ElasticSearch,(Logstash,Mysql)
-| tensquare_user| 用户模块微服务| 9008 | Mysql,Redis,RabbitMQ
+| tensquare_search | 文章模块微服务 | 9007 | ElasticSearch,(Logstash,MySQL)
+| tensquare_user| 用户模块微服务| 9008 | MySQL,Redis,RabbitMQ
 | tensquare_sms| 消息模块微服务| 9008 | RabbitMQ
+| tensquare_friend| 用户交友微服务| 9010 | MySQL
 
 
 - Cloud子项目

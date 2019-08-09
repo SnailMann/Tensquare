@@ -1,23 +1,34 @@
 server:
-  port: 9004
+  port: 9010
 
 spring:
   application:
-    name: tensquare-article
-  # Mysql
+    name: tensquare-user
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.31.129:3306/tensquare_article?&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.31.129:3306/tensquare_friend?characterEncoding=utf8&useSSL=false
     username: root
     password: root
-  # JPA
-  jpa:
-    show-sql: true
-    database: mysql
-  # Redis
   redis:
     host: 192.168.31.129
     port: 6379
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 192.168.31.129
+    port: 5672
+  jpa:
+    show-sql: true
+    database: mysql
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+jwt:
+  config:
+    key: tensquare
 
 eureka:
   client:

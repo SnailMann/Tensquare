@@ -5,12 +5,12 @@ spring:
   application:
     name: tensquare-sms
   redis:
-    host: 192.168.31.128
+    host: 192.168.31.129
     port: 6379
   rabbitmq:
     username: guest
     password: guest
-    host: 192.168.31.128
+    host: 192.168.31.129
     port: 5672
 
 # https://cloud.tencent.com/document/product/382/13613
