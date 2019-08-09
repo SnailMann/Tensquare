@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,10 +29,10 @@ public class FriendController {
      *
      * @return
      */
-    @RequestMapping(value = "/like/{friendid}/{type}")
+    @RequestMapping(value = "/like/{friendid}/{type}",method = RequestMethod.POST)
     public Result addFriend(@PathVariable String friendid, @PathVariable String type) {
         //验证是否登录，并且拿到当前登录的用户id
-        Claims claims = (Claims) request.getAttribute("claim_user");
+        Claims claims = (Claims) request.getAttribute("claims_user");
         if (claims == null) {
             return new Result(false, StatusCode.LOGIN_ERROR, "权限不足");
         }

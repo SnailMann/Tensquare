@@ -32,7 +32,7 @@ public class FriendService {
         friend = new Friend();
         friend.setUserid(userId);
         friend.setFriendid(friendid);
-        friend.setFriendid("0");
+        friend.setIslike("0");
         friendDao.save(friend);
 
         //判断friendid用户是否也对userid用户是喜欢状态，如果是，这把双方的喜欢状态都改为1，代表互相关注

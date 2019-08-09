@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 
 /**
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_nofriend")
 @IdClass(NoFriend.class) //联合主键的声明
-public class NoFriend {
+public class NoFriend implements Serializable {
     @Id
     private String userid;
     @Id
