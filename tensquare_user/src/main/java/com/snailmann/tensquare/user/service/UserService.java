@@ -15,6 +15,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -218,8 +219,8 @@ public class UserService {
         User userdb = userDao.findByMobile(mobile);
 
         //如果数据存在该用户数据，且与数据库密文匹配成功，那么就登录成功
-        if (userdb != null){
-            if (bCryptPasswordEncoder.matches(password,userdb.getPassword())){
+        if (userdb != null) {
+            if (bCryptPasswordEncoder.matches(password, userdb.getPassword())) {
                 return userdb;
             }
         }
@@ -227,5 +228,16 @@ public class UserService {
         return null;
     }
 
-
+    /**
+     * 更新粉丝数和关注数
+     *
+     * @param userid
+     * @param friendid
+     * @param x
+     */
+    @Transactional
+    public void updateFansCountAndFollowCount(int x, String userid, String friendid) {
+        userDao.updateFansCount(x, userid);
+        userDao.updateFollowCount(x, friendid);
+    }
 }

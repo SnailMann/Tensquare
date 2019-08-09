@@ -39,6 +39,26 @@ public class UserController {
     @Autowired
     JwtUtil jwtUtil;
 
+    /**
+     * 更新用户的关注数和对应好友的粉丝数
+     * 既当前userid关注了friendid用户，所以userid用户的关注数+1， friendid的粉丝数也+1 ，此时x就是1
+     * 如果userid取关了friendid用户，所以userid用户的关注数+（-1），friendid粉丝数也+（-1）， 此时的x就是-1
+     *
+     * @param userid
+     * @param friendid
+     * @param x        数量
+     */
+    @RequestMapping(value = "/{userid}/{friendid}/{x}", method = RequestMethod.PUT)
+    public void updateFansCountAndFollowcCount(@PathVariable String userid, @PathVariable String friendid, @PathVariable int x) {
+        userService.updateFansCountAndFollowCount(x, userid, friendid);
+    }
+
+    /**
+     * 普通用户登录
+     *
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Result login(@RequestBody User user) {
         user = userService.login(user.getMobile(), user.getPassword());

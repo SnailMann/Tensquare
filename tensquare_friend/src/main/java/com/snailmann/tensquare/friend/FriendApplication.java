@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 @SpringBootApplication
-public class TensquareFriendApplication {
+public class FriendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TensquareFriendApplication.class, args);
+		SpringApplication.run(FriendApplication.class, args);
 	}
 
 }

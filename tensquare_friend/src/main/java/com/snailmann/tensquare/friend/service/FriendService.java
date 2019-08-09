@@ -1,7 +1,9 @@
 package com.snailmann.tensquare.friend.service;
 
 import com.snailmann.tensquare.friend.dao.FriendDao;
+import com.snailmann.tensquare.friend.dao.NoFriendDao;
 import com.snailmann.tensquare.friend.entity.Friend;
+import com.snailmann.tensquare.friend.entity.NoFriend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,9 @@ public class FriendService {
 
     @Autowired
     FriendDao friendDao;
+
+    @Autowired
+    NoFriendDao noFriendDao;
 
     /**
      * userid用户喜欢/关注friendid用户
@@ -42,5 +47,39 @@ public class FriendService {
         }
 
         return 1;
+    }
+
+    /**
+     * 对于userid用户，将friendid用户设置为不喜欢的用户，类似黑名单，但又更轻微
+     *
+     * @param userid
+     * @param friendid
+     * @return
+     */
+    public int addNorFriend(String userid, String friendid) {
+        NoFriend noFriend = noFriendDao.findByUseridAndAndFriendid(userid, friendid);
+        if (noFriend != null) {
+            return 0;
+        }
+
+        noFriend = new NoFriend();
+        noFriend.setUserid(userid);
+        noFriend.setFriendid(friendid);
+        noFriendDao.save(noFriend);
+        return 1;
+    }
+
+    /**
+     * 取消关注，删除好友
+     *
+     * @param userId
+     * @param friendid
+     */
+    public void deleteFriend(String userId, String friendid) {
+        //删除好友表中userid对friendid的记录
+
+        //更新friendid对userid的islike状态为0
+
+        //插入userid对friendid的记录到非好友表
     }
 }

@@ -143,4 +143,11 @@ public class ParseJwt {
 - 我们这里前后端的约定是，前端请求微服务需要添加头信息Authorization,内容为Bearer+空格+token
 - 后端接收到请求后，从request中取出token, 对token进行验证
 
+
+#### 用户A关注用户B
+
+- 用户A关注了用户B，由Friend模块远程调用User模块，先更新UserA的关注数+1，在更新UserB的粉丝数+1
+- 用户A取关了用户B，由Friend模块远程调用User模块，先更新UserA的关注数-1，再更新UserB的粉丝数-1
+- User操作是由本地事务控制
+
  
