@@ -70,16 +70,22 @@ public class FriendService {
     }
 
     /**
-     * 取消关注，删除好友
+     * 取消关注，删除好友,将删除好友加入不关注列表（既不想在发现好友列表中看见）
      *
      * @param userId
      * @param friendid
      */
     public void deleteFriend(String userId, String friendid) {
         //删除好友表中userid对friendid的记录
-
+        friendDao.deleteFriend();
         //更新friendid对userid的islike状态为0
-
+        friendDao.updateIslike("0", friendid, userId);
         //插入userid对friendid的记录到非好友表
+        NoFriend noFriend = new NoFriend();
+        noFriend.setUserid(userId);
+        noFriend.setFriendid(friendid);
+        noFriendDao.save(noFriend);
+
+
     }
 }
