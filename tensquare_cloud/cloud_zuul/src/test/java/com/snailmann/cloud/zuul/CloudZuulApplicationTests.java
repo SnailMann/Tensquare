@@ -1,4 +1,4 @@
-package com.snailmann.cloud.eureka;
+package com.snailmann.cloud.zuul;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CloudEurekaApplicationTests {
+public class CloudZuulApplicationTests {
 
 	@Test
 	public void contextLoads() {

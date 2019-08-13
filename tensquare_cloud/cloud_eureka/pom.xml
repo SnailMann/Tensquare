@@ -10,7 +10,7 @@
 
     <groupId>com.snailmann.cloud</groupId>
     <artifactId>cloud_eureka</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>cloud_eureka</name>
 
 

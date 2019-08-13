@@ -1,4 +1,4 @@
-package com.snailmann.cloud.eureka;
+package com.snailmann.cloud.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

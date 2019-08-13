@@ -1,12 +1,10 @@
 package com.snailmann.tensquare.common.interceptor;
 
-import com.snailmann.tensquare.common.context.TokenContext;
+import com.snailmann.tensquare.common.context.RequestContext;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class FeignInvokeInterceptor implements RequestInterceptor {
 
     @Autowired
-    HttpServletRequest request;
+    RequestContext RequestContext;
 
     /**
      * 每个feign调用，都会从request中获取header，然后塞到RequestTemplate中，传递给下游服务
@@ -25,6 +23,7 @@ public class FeignInvokeInterceptor implements RequestInterceptor {
      */
     @Override
     public void apply(RequestTemplate requestTemplate) {
+        HttpServletRequest request = RequestContext.getRequest();
         if (null != request) {
             requestTemplate.header("Authorization", request.getHeader("Authorization"));
         }

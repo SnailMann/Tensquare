@@ -13,6 +13,11 @@
     </parent>
 
     <dependencies>
+        <!--springcloud-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
         <!--springboot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

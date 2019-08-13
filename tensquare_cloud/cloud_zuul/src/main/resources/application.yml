@@ -1,11 +1,3 @@
-## Cloud-Eureka
-
-### 功能
-
-#### 集群配置
-
-
-```yaml
 eureka:
   client:
     fetch-registry: true # Eureka显示自己的信息
@@ -21,4 +13,35 @@ eureka:
     prefer-ip-address: true # 使用IP代替主机名在注册中心做唯一标识
     metadata-map:
       version: ${info.version}
-```
+
+server:
+  port: 9011
+spring:
+  application:
+    name: cloud-zuul
+zuul:
+  routes:
+    tensquare-gathering:
+      path: /gathering/**
+      serviceId: tensquare-gathering
+    tensquare-article:
+      path: /article/**
+      serviceId: tensquare-article
+    tensquare-base:
+      path: /base/**
+      serviceId: tensquare-base
+    tensquare-friend:
+      path: /friend/**
+      serviceId: tensquare-friend
+    tensquare-qa:
+      path: /qa/**
+      serviceId: tensquare-qa
+    tensquare-recruit:
+      path: /recruit/**
+      serviceId: tensquare-recruit
+    tensquare-spit:
+      path: /spit/**
+      serviceId: tensquare-spit
+    tensquare-user:
+      path: /user/**
+      serviceId: tensquare-user

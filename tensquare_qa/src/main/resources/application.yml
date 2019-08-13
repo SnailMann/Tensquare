@@ -32,3 +32,7 @@ eureka:
     prefer-ip-address: true
     metadata-map:
       version: ${info.version}
+
+feign:
+  hystrix:
+    enabled: true
