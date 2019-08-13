@@ -30,6 +30,8 @@ public class FriendController {
 
     /**
      * 添加好友或者非好友
+     * type是1，添加好友，喜欢，关注
+     * type是2，添加非好友，不喜欢，不想关注，不想在好友发现列表看见该用户
      *
      * @return
      */

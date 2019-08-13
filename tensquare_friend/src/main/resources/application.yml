@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: tensquare-user
+    name: tensquare-friend
   datasource:
     url: jdbc:mysql://192.168.31.129:3306/tensquare_friend?characterEncoding=utf8&useSSL=false
     username: root
