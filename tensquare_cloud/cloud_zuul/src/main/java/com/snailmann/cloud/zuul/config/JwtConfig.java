@@ -1,4 +1,4 @@
-package com.snailmann.tensquare.user.config;
+package com.snailmann.cloud.zuul.config;
 
 import com.snailmann.tensquare.common.util.JwtUtil;
 import org.springframework.context.annotation.Bean;

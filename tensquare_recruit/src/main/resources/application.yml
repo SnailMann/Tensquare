@@ -12,3 +12,7 @@ spring:
   jpa:
     show-sql: true
     database: mysql
+
+jwt:
+  config:
+    key: tensquare

@@ -34,3 +34,7 @@ eureka:
     prefer-ip-address: true
     metadata-map:
       version: ${info.version}
+
+jwt:
+  config:
+    key: tensquare

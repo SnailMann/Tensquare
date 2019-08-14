@@ -17,12 +17,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-        <!--tensquare-->
-        <dependency>
-            <groupId>com.snailmann.tensquare</groupId>
-            <artifactId>tensquare_common</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <!--腾讯云短信-->
         <dependency>
             <groupId>com.github.qcloudsms</groupId>

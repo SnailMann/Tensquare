@@ -1,4 +1,4 @@
-package com.snailmann.tensquare.friend.config;
+package com.snailmann.tensquare.recruit.config;
 
 import com.snailmann.tensquare.common.util.JwtUtil;
 import org.springframework.context.annotation.Bean;

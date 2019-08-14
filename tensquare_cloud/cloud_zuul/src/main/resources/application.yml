@@ -4,7 +4,7 @@ eureka:
     register-with-eureka: true # Eureka也注册到Eureka上
     registry-fetch-interval-seconds: 10 # 当前eureka client每隔10s就去注册中心获取一次最新注册资讯，默认30s
     serviceUrl:
-      defaultZone: http://127.0.0.1:6868/eureka/,http://127.0.0.1:6869/eureka/,http://127.0.0.1:6870/eureka/
+      defaultZone: http://127.0.0.1:6868/eureka/
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     ip-address: ${spring.cloud.client.ip-address}
@@ -14,12 +14,18 @@ eureka:
     metadata-map:
       version: ${info.version}
 
+
+jwt:
+  config:
+    key: tensquare
+
 server:
   port: 9011
 spring:
   application:
     name: cloud-zuul
 zuul:
+  sensitive-headers: true
   routes:
     tensquare-gathering:
       path: /gathering/**
@@ -45,3 +51,4 @@ zuul:
     tensquare-user:
       path: /user/**
       serviceId: tensquare-user
+

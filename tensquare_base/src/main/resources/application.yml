@@ -13,6 +13,9 @@ spring:
     show-sql: true
     database: mysql
 
+jwt:
+  config:
+    key: tensquare
 
 eureka:
   client:
