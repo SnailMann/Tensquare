@@ -12,15 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class RequestContext {
 
+
     /**
      * 获得Request
      *
      * @return
      */
-    public HttpServletRequest getRequest() {
+    public static HttpServletRequest getRequest() {
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) (RequestContextHolder.getRequestAttributes());
         try {
-            return ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes()))
-                    .getRequest();
+            return requestAttributes.getRequest();
         } catch (Exception e) {
             return null;
         }

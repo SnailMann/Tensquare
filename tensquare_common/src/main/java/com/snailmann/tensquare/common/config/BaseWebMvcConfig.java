@@ -18,9 +18,14 @@ public class BaseWebMvcConfig implements WebMvcConfigurer {
     @Autowired
     TokenInterceptor tokenInterceptor;
 
+    /**
+     * /error是zuul的默认错误页面
+     *
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(urlInterceptor).addPathPatterns("/**");
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/**/login/**");
+        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/**/login/**", "/error","/hystrix/**");
     }
 }

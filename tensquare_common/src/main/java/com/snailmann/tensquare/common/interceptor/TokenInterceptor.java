@@ -50,4 +50,19 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
         throw new AuthException("权限不足，请登录！！");
     }
+
+
+    /**
+     * 请求执行完毕后，要清理ThreadLocal中的引用
+     *
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @throws Exception
+     */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        tokenContext.clear();
+    }
 }
