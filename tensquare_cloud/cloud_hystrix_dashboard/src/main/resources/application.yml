@@ -25,3 +25,6 @@ management:
     web:
       exposure:
         include: "*"
+turbine:
+  cluster-name-expression: "'default'"
+  app-config: cloud-zuul,tensquare-qa,tensquare-user,tensquare-base
