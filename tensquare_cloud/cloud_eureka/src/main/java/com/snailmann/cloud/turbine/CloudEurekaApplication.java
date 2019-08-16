@@ -1,4 +1,4 @@
-package com.snailmann.cloud.zuul;
+package com.snailmann.cloud.turbine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -25,7 +25,7 @@ spring:
   application:
     name: cloud-zuul
 zuul:
-  sensitive-headers: true
+  sensitive-headers: true # 全局自定义敏感头
   routes:
     tensquare-gathering:
       path: /gathering/**
@@ -52,3 +52,34 @@ zuul:
       path: /user/**
       serviceId: tensquare-user
 
+
+
+
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 2000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  OKToRetryOnAllOperations: false
+  ServerListRefreshInterval: 3
+
+
+hystrix:
+  command:
+    tensquare-base:
+      circuitBreaker:
+        errorThresholdPercentage: 50
+        requestVolumeThreshold: 20
+        sleepWindowInMilliseconds: 5000
+      execution:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 50
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 2000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

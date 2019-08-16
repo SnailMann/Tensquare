@@ -1,4 +1,4 @@
-package com.snailmann.cloud.zuul.filter;
+package com.snailmann.cloud.turbine.filter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,15 +7,15 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.snailmann.tensquare.common.context.TokenContext;
 import com.snailmann.tensquare.common.entity.Result;
-import com.snailmann.tensquare.common.exception.AuthException;
 import com.snailmann.tensquare.common.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 
 @Slf4j
 public class AuthFilter extends ZuulFilter {
@@ -38,7 +38,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public String filterType() {
-        return "pre";
+        return PRE_TYPE;
     }
 
     /**
@@ -72,7 +72,7 @@ public class AuthFilter extends ZuulFilter {
      * @throws ZuulException
      */
     @Override
-    public Object run() throws ZuulException {
+    public Object run()  {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
 

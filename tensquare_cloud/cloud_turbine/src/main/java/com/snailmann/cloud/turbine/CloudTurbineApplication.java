@@ -1,18 +1,18 @@
-package com.snailmann.cloud.zuul;
+package com.snailmann.cloud.turbine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 
 @EnableDiscoveryClient
-@EnableZuulProxy
 @SpringBootApplication
-public class CloudZuulApplication {
+@EnableTurbine
+public class CloudTurbineApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CloudZuulApplication.class, args);
+        SpringApplication.run(CloudTurbineApplication.class, args);
     }
 
 }
