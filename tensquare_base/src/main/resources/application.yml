@@ -32,3 +32,9 @@ eureka:
     prefer-ip-address: true
     metadata-map:
       version: ${info.version}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -36,3 +36,29 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 2000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 0
+  OKToRetryOnAllOperations: false
+  ServerListRefreshInterval: 3
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 3000
+          strategy: SEMAPHORE
+        timeout:
+          enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

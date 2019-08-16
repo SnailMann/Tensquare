@@ -29,6 +29,7 @@
 | --- | --- | --- | --- | ---| 
 | cloud_eureka | 注册中心 | 6868,6869,6870
 | cloud_zuul | 网关 | 9011
+| cloud_hystrix_dashboard | hystrix dashboard | 9100
 
 
 

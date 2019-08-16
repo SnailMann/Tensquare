@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author SnailMann
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping("/label")
 public class LabelController {
 
+    private AtomicInteger count = new AtomicInteger(0);
     @Autowired
     private LabelService labelService;
 
@@ -41,7 +43,8 @@ public class LabelController {
      * @return
      */
     @GetMapping("/{labelId}")
-    public Result findById(@PathVariable("labelId") String labelId) {
+    public Result findById(@PathVariable("labelId") String labelId) throws InterruptedException {
+        System.out.println(count.incrementAndGet());
         return new Result(true, StatusCode.OK, "查询成功",labelService.findById(labelId));
 
     }
