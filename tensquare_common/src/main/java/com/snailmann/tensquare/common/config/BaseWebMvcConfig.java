@@ -26,6 +26,10 @@ public class BaseWebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(urlInterceptor).addPathPatterns("/**");
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/**/login/**", "/error","/hystrix/**");
+        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns(
+                "/**/login/**",
+                "/error",
+                "/hystrix/**",
+                "/actuator/**");
     }
 }
